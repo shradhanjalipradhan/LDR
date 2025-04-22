@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>I Love You Anirudh Animation</title>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: 'Dancing Script', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      font-size: 60px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .word {
+      opacity: 0;
+      display: inline-block;
+      margin: 0 10px;
+      transition: opacity 1s ease-in;
+    }
+
+    .show {
+      opacity: 1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 3s infinite;
+      top: 80%;
+      left: 50%;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -15px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1) rotate(45deg); }
+      50% { transform: translateY(-30px) scale(1.1) rotate(45deg); }
+      100% { transform: translateY(0) scale(1) rotate(45deg); }
+    }
+
+    #click-msg {
+      position: absolute;
+      bottom: 30px;
+      font-family: sans-serif;
+      color: gray;
+      font-size: 16px;
+    }
+  </style>
+
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <span class="word" id="w1">I</span>
+    <span class="word" id="w2">love</span>
+    <span class="word" id="w3">you</span>
+    <span class="word" id="w4">Anirudh</span>
+  </div>
+
+  <div class="heart"></div>
+
+  <p id="click-msg">Click anywhere to begin the music 🎵</p>
+
+  <audio id="heartbeat" src="athousandyearspt2.mp3" autoplay loop></audio>
+
+  <script>
+    const words = [
+      document.getElementById("w1"),
+      document.getElementById("w2"),
+      document.getElementById("w3"),
+      document.getElementById("w4")
+    ];
+    const sound = document.getElementById("heartbeat");
+
+    words.forEach((word, i) => {
+      setTimeout(() => {
+        word.classList.add("show");
+      }, i * 1000);
+    });
+
+    document.body.addEventListener('click', () => {
+      sound.play();
+      document.getElementById("click-msg").style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
